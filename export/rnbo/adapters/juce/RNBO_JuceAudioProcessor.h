@@ -21,8 +21,9 @@
 
 #include <json/json.hpp>
 #include <juce_audio_processors/juce_audio_processors.h>
-#include <juce_audio_formats/juce_audio_formats.h>
-#include "../../../../thirdparty/foleys_gui_magic/modules/foleys_gui_magic/foleys_gui_magic.h"
+#include <JuceHeader.h>
+//#include <juce_audio_formats/juce_audio_formats.h>
+//#include "../../../../thirdparty/foleys_gui_magic/modules/foleys_gui_magic/foleys_gui_magic.h"
 
 namespace moodycamel {
 template<typename T, size_t MAX_BLOCK_SIZE>

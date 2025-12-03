@@ -37,6 +37,7 @@ juce_add_plugin(RNBOAudioPlugin
 # this header will be automatically added to the target. The main function of the JuceHeader is to
 # include all your JUCE module headers; if you're happy to include module headers directly, you
 # probably don't need to call this.
+#juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOAudioPlugin)
@@ -105,6 +106,7 @@ target_link_libraries(RNBOAudioPlugin
   juce::juce_recommended_config_flags
   juce::juce_recommended_lto_flags
   juce::juce_recommended_warning_flags
+  foleys_gui_magic
   )
 
 #TODO windows and linux
