@@ -20,6 +20,12 @@
             ```
             foleys::MagicProcessor
             ```
+        
+        0c. Remove the createEditor() and hasEditor() declarations
+            ```
+            juce::AudioProcessorEditor* createEditor() override;
+            bool hasEditor() const override;
+            ```
 
         0c. Change the .cpp files, by changing the constructor initialization list to use MagicProcessor instead of AudioProcessor
         
