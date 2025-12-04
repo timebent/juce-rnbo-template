@@ -1,5 +1,7 @@
 # RNBO JUCE Examples
 
+This version of the template differs in that it attempts to fold in Foleys Plugin GUI Magic for creating GUIs in combination with what RNBO spits out. See bottom of the page for how to get that part working.
+
 So you want to build your own DAW or a Plugin? This template should get you started with your own Standalone Desktop application and Audio Plugin, using the source code export feature of RNBO, part of [Max 8](https://cycling74.com/max8/) made by [Cycling '74](https://cycling74.com/). 
 
 This project is based on the cross-platform JUCE framework for handling audio processing. You have the option of using JUCE to manage your UI as well. Please be aware that the JUCE has its own license terms (mostly GPL with the availability of commercial licenses). See their [website](http://www.juce.com/) for further details.
@@ -140,3 +142,5 @@ This project is based on the [JUCE Framework](http://www.juce.com/). Please refe
 There are details that you might want to change in `App.cmake` for Applications and in `Plugin.cmake` for Plugins.
 
 If you're not interested in the Application or Plugin parts of this project you can remove the associated *include* lines from the `CMakeLists.txt` file.
+
+
