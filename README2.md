@@ -4,22 +4,22 @@
 
 
 ### 0) Find the RNBO_JuceAudioProcessor.h and the RNBO_JuceAudioProcssor.cpp in 
-export->rnbo->adpaters->juce
+    export->rnbo->adpaters->juce
 
-- Change the .h file by adding 
-```
-#include "JuceHeader.h"
-```
+    - Change the .h file by adding 
+    ```
+    #include "JuceHeader.h"
+    ```
 
-and by changing what the class RNBO_JuceAudioProcessor inherits from ... from:
-```
-juce::AudioProcessor
-```
-to 
+    and by changing what the class RNBO_JuceAudioProcessor inherits from ... from:
+    ```
+    juce::AudioProcessor
+    ```
+    to 
 
-```
-foleys::MagicProcessor
-```
+    ```
+    foleys::MagicProcessor
+    ```
 
 In the .cpp files, change the constructor initialization list to use MagicProcessor instead of AudioProcessor
 remove this function: 
