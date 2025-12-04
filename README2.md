@@ -27,23 +27,25 @@
             bool hasEditor() const override;
             ```
 
-        0c. Change the .cpp files, by changing the constructor initialization list to use MagicProcessor instead of AudioProcessor
+        0d. Change the .cpp file. Change the constructor initialization list to use MagicProcessor instead of AudioProcessor
+            ```
+            JuceAudioProcessor::JuceAudioProcessor(
+                    const nlohmann::json& patcher_desc,
+                    const nlohmann::json& presets,
+                    const RNBO::BinaryData& data,
+                    JuceAudioParameterFactory* paramFactory
+                )
+            : CoreObjectHolder(this)
+            , AudioProcessor( <<<<--------  // Change to MagicProcessor(
+            ```
         
-        0d. Also, remove these function: 
+        0e. Remove these function: 
             ```
             bool JuceAudioProcessor::hasEditor() const
             ```
 
             ```
             AudioProcessorEditor* JuceAudioProcessor::createEditor()
-            ```
-
-            ```
-            void JuceAudioProcessor::getStateInformation (MemoryBlock& destData)
-            ```
-
-            ```
-            void JuceAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
             ```
 
 
