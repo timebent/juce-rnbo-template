@@ -43,6 +43,8 @@ juce_add_binary_data(RNBOAudioPlugin_BinaryData
     SOURCES
     resources/magic.xml)
 
+set( MY_MAGIC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/resources/magic.xml" )
+
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOAudioPlugin)
 
@@ -97,6 +99,8 @@ target_compile_definitions(RNBOAudioPlugin
   JUCE_VST3_CAN_REPLACE_VST2=0
   RNBO_JUCE_NO_CREATE_PLUGIN_FILTER=1 #don't have RNBO create its own createPluginFilter function, we'll create it ourselves
   RNBO_JUCE_PARAM_DEFAULT_NOTIFY=${RNBO_JUCE_PARAM_DEFAULT_NOTIFY}
+  JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_VERSION>"
+  MY_MAGIC_SRC="${MY_MAGIC_SRC}"
   )
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,

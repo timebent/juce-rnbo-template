@@ -27,7 +27,11 @@ juce_add_binary_data(RNBOApp_BinaryData
     SOURCES
     resources/magic.xml)
 # the RNBO adapters currently need this
+
+set( MY_MAGIC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/resources/magic.xml" )
+
 juce_generate_juce_header(RNBOApp)
+
 
 # `target_sources` adds source files to a target. We pass the target that needs the sources as the
 # first argument, then a visibility parameter for the sources which should normally be PRIVATE.
@@ -71,7 +75,8 @@ target_compile_definitions(RNBOApp
   JUCE_WEB_BROWSER=0  # If you remove this, add `NEEDS_WEB_BROWSER TRUE` to the `juce_add_gui_app` call
   JUCE_USE_CURL=0     # If you remove this, add `NEEDS_CURL TRUE` to the `juce_add_gui_app` call
   JUCE_APPLICATION_NAME_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_PRODUCT_NAME>"
-  JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_VERSION>")
+  JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_VERSION>"
+  MY_MAGIC_SRC="${MY_MAGIC_SRC}")
 
 
 

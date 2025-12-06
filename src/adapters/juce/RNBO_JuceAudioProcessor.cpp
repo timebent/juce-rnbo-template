@@ -119,6 +119,10 @@ JuceAudioProcessor::JuceAudioProcessor(
 
 	_formatManager.registerBasicFormats();
     
+    // In your MagicProcessor call this macro to set the toolbox save path to either "Sources" or if there is a sibling to "Resources"
+
+    FOLEYS_SET_SOURCE_PATH ( MY_MAGIC_SRC )
+    
     magicState.setGuiValueTree (::BinaryData::magic_xml, ::BinaryData::magic_xmlSize);
 	//create default param factory if one isn't passed in
 	std::unique_ptr<JuceAudioParameterFactory> fact;
