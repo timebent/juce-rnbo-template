@@ -22,21 +22,21 @@ void CustomKnob::paint(juce::Graphics& g)
                  ((getValue() - getMinimum()) / (getMaximum() - getMinimum())) * 
                  juce::MathConstants<float>::pi * 1.5f;
     
-    // Draw the outer circle (knob body)
-    g.setColour(juce::Colours::darkgrey);
+    // Draw the outer circle (knob body) - use rotarySliderOutlineColourId
+    g.setColour(findColour(juce::Slider::rotarySliderOutlineColourId));
     g.fillEllipse(centre.x - radius, centre.y - radius, radius * 2.0f, radius * 2.0f);
     
-    // Draw the inner circle
-    g.setColour(juce::Colours::grey);
+    // Draw the inner circle - use backgroundColourId
+    g.setColour(findColour(juce::Slider::backgroundColourId));
     g.fillEllipse(centre.x - radius * 0.8f, centre.y - radius * 0.8f, 
                   radius * 1.6f, radius * 1.6f);
     
-    // Draw the pointer line
+    // Draw the pointer line - use rotarySliderFillColourId
     juce::Path pointer;
     pointer.startNewSubPath(centre);
     pointer.lineTo(centre.x + std::cos(angle) * radius * 0.7f, 
                    centre.y + std::sin(angle) * radius * 0.7f);
     
-    g.setColour(juce::Colours::white);
+    g.setColour(findColour(juce::Slider::rotarySliderFillColourId));
     g.strokePath(pointer, juce::PathStrokeType(3.0f));
 }
