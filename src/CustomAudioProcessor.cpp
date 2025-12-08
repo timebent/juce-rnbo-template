@@ -34,10 +34,18 @@ CustomAudioProcessor::CustomAudioProcessor(
 {
 }
 
-//AudioProcessorEditor* CustomAudioProcessor::createEditor()
+void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
+{
+    // Call parent to register standard JUCE components
+    RNBO::JuceAudioProcessor::initialiseBuilder(builder);
+    
+    // Register our custom component
+    builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
+}
+
+//juce::AudioProcessorEditor* CustomAudioProcessor::createEditor()
 //{
-//    //Change this to use your CustomAudioEditor
-//    return new CustomAudioEditor (this, this->_rnboObject);
-//    //return RNBO::JuceAudioProcessor::createEditor();
+//    // Use the default MagicProcessor createEditor
+//    return RNBO::JuceAudioProcessor::createEditor();
 //}
 
