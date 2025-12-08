@@ -45,6 +45,7 @@ target_sources(RNBOApp
   src/CustomAudioEditor.cpp
   src/CustomAudioProcessor.cpp
   src/CustomKnob.cpp
+  src/DebugWindow.cpp
 
   ${RNBO_CLASS_FILE}
 
