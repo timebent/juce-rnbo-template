@@ -25,8 +25,7 @@ juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
 juce_add_binary_data(RNBOApp_BinaryData
     SOURCES
-    resources/magic.xml
-    resources/knobs.png)
+    resources/magic.xml)
 # the RNBO adapters currently need this
 
 set( MY_MAGIC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/resources/magic.xml" )
