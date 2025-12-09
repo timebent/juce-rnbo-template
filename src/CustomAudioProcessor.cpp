@@ -1,5 +1,8 @@
 #include "CustomAudioProcessor.h"
 #include "CustomAudioEditor.h"
+#ifdef JUCE_STANDALONE_APPLICATION
+#include "DebugWindow.h"
+#endif
 #include <json/json.hpp>
 
 #ifdef RNBO_INCLUDE_DESCRIPTION_FILE
@@ -41,6 +44,35 @@ void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
     
     // Register our custom component
     builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
+}
+
+void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockExpected)
+{
+    // Call parent prepareToPlay
+    RNBO::JuceAudioProcessor::prepareToPlay(sampleRate, samplesPerBlockExpected);
+    
+#ifdef JUCE_STANDALONE_APPLICATION
+    // Notify debug window
+    if (debugWindow)
+        debugWindow->prepareToPlay(sampleRate, samplesPerBlockExpected);
+#endif
+}
+
+void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+{
+    // Call parent processBlock
+    RNBO::JuceAudioProcessor::processBlock(buffer, midiMessages);
+    
+#ifdef JUCE_STANDALONE_APPLICATION
+    // Push samples to debug window
+    if (debugWindow)
+    {
+        static int logCount = 0;
+        if (logCount++ == 0)
+            juce::Logger::writeToLog("CustomAudioProcessor: Pushing audio to debug window");
+        debugWindow->pushAudioSamples(buffer);
+    }
+#endif
 }
 
 //juce::AudioProcessorEditor* CustomAudioProcessor::createEditor()

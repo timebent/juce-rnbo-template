@@ -249,7 +249,21 @@ private:
 #if JUCE_DEBUG
 		if (debugWindow == nullptr)
 		{
+			juce::Logger::writeToLog("Creating debug window...");
 			debugWindow = std::make_unique<DebugWindow>();
+			// Pass the debug window to the processor so it can send audio samples
+			if (_audioProcessor)
+			{
+				juce::Logger::writeToLog("Setting debug window on processor");
+				_audioProcessor->setDebugWindow(debugWindow.get());
+				// If audio is already running, prepare the debug window
+				if (_audioProcessor->getSampleRate() > 0)
+				{
+					juce::Logger::writeToLog("Preparing debug window with SR=" + juce::String(_audioProcessor->getSampleRate()));
+					debugWindow->prepareToPlay(_audioProcessor->getSampleRate(), 
+					                          _audioProcessor->getBlockSize());
+				}
+			}
 		} else {
 			const bool visible = debugWindow->isVisible();
 			debugWindow->setVisible (!visible);
