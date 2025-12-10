@@ -50,5 +50,4 @@ private:
     foleys::MagicOscilloscope* oscilloscope = nullptr;
     foleys::MagicPlotSource* analyser = nullptr;
     std::unique_ptr<PlotContainer> container;
-    juce::AudioBuffer<float> monoBuffer;
 };

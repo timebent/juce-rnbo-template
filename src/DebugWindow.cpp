@@ -8,8 +8,6 @@ DebugWindow::DebugWindow()
         setAlwaysOnTop(true);
         setResizable(true, false);
         
-        // Initialize mono buffer with the window
-        monoBuffer.setSize(1, 512);
         
         // Create the plot sources (configured later in prepareToPlay with sample rate)
         oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("waveform");
@@ -98,45 +96,7 @@ void DebugWindow::pushAudioSamples(const juce::AudioBuffer<float>& buffer)
 {
     if (buffer.getNumSamples() <= 0 || buffer.getNumChannels() <= 0)
         return;
-    
-        // leaving this try and catch in place to avoid any potential crashes
-    try
-    {
-        // Ensure our mono buffer has the right size
-        if (monoBuffer.getNumSamples() != buffer.getNumSamples())
-            monoBuffer.setSize(1, buffer.getNumSamples(), false, true, false);
-        
-        monoBuffer.clear();
-        
-        // Get write pointer for our mono buffer
-        float* monoData = monoBuffer.getWritePointer(0);
-        
-        if (monoData == nullptr)
-            return;
-        
-        if (buffer.getNumChannels() == 1)
-        {
-            // Already mono, copy it directly
-            const float* sourceData = buffer.getReadPointer(0);
-            for (int i = 0; i < buffer.getNumSamples(); ++i)
-                monoData[i] = sourceData[i];
-        }
-        else if (buffer.getNumChannels() >= 2)
-        {
-            // Mix first two channels to mono (average them)
-            const float* channel0 = buffer.getReadPointer(0);
-            const float* channel1 = buffer.getReadPointer(1);
-            
-            for (int i = 0; i < buffer.getNumSamples(); ++i)
-                monoData[i] = (channel0[i] + channel1[i]) * 0.5f;
-        }
-        
         // Push to oscilloscope and analyser 
-        oscilloscope->pushSamples(monoBuffer);
-        analyser->pushSamples(monoBuffer);
-    }
-    catch (const std::exception& e)
-    {
-        juce::Logger::writeToLog(juce::String("Error pushing audio samples: ") + e.what());
-    }
+        oscilloscope->pushSamples(buffer);
+        analyser->pushSamples(buffer);
 }
