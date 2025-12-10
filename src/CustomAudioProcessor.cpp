@@ -37,6 +37,7 @@ CustomAudioProcessor::CustomAudioProcessor(
     ) 
   : RNBO::JuceAudioProcessor(patcher_desc, presets, data) 
 {
+    rtc::set_error_mode(rtc::error_mode::cont);
 }
 
 void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
@@ -63,7 +64,7 @@ void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockE
 void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     rtc::realtime_context rc; // This makes users aware of system calls in the audio thread
-    rtc::set_error_mode(rtc::error_mode::cont);
+
     // Call parent processBlock
     RNBO::JuceAudioProcessor::processBlock(buffer, midiMessages);
     
