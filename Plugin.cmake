@@ -23,7 +23,7 @@ juce_add_plugin(RNBOAudioPlugin
   COMPANY_NAME "Thompson"     # Specify the name of the plugin's author
   IS_SYNTH TRUE                        # Is this a synth or an effect?
   NEEDS_MIDI_INPUT TRUE                # Does the plugin need midi input?
-  NEEDS_MIDI_OUTPUT TRUE               # Does the plugin need midi output?
+  NEEDS_MIDI_OUTPUT FALSE               # Does the plugin need midi output?
   IS_MIDI_EFFECT FALSE                 # Is this plugin a MIDI effect?
   EDITOR_WANTS_KEYBOARD_FOCUS FALSE    # Does the editor need keyboard focus?
   COPY_PLUGIN_AFTER_BUILD FALSE        # Should the plugin be installed to a default location after building?
@@ -39,11 +39,16 @@ juce_add_plugin(RNBOAudioPlugin
 # probably don't need to call this.
 #juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
+# Create magic.xml if it doesn't exist
+set( MY_MAGIC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/resources/magic.xml" )
+if(NOT EXISTS "${MY_MAGIC_SRC}")
+    file(WRITE "${MY_MAGIC_SRC}" "")
+    message(STATUS "Created empty magic.xml at ${MY_MAGIC_SRC}")
+endif()
+
 juce_add_binary_data(RNBOAudioPlugin_BinaryData
     SOURCES
     resources/magic.xml)
-
-set( MY_MAGIC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/resources/magic.xml" )
 
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOAudioPlugin)
