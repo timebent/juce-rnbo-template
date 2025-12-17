@@ -37,6 +37,20 @@ public:
             attachment = getMagicState().createAttachment(paramID, customKnob);
         }
     }
+
+    // Expose the parameter selection in Magic's editor and XML
+    std::vector<foleys::SettableProperty> getSettableProperties() const override
+    {
+        std::vector<foleys::SettableProperty> props;
+        props.push_back({ configNode, foleys::IDs::parameter, foleys::SettableProperty::Choice, {}, magicBuilder.createParameterMenuLambda() });
+        return props;
+    }
+
+    // Let Magic know which parameter this item controls (reads the 'parameter' attribute)
+    juce::String getControlledParameterID(juce::Point<int>) override
+    {
+        return configNode.getProperty(foleys::IDs::parameter, juce::String()).toString();
+    }
     
     std::vector<juce::Component*> getComponents() 
     {
