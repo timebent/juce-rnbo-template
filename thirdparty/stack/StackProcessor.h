@@ -7,13 +7,22 @@
 #include <json/json.hpp>
 #include <juce_audio_processors/juce_audio_processors.h>
 
+#include <foleys_gui_magic/foleys_gui_magic.h>
+
 namespace stack {
     class StackProcessor : public RNBO::JuceAudioProcessor {
     public:
+        StackProcessor::StackProcessor (const nlohmann::json& patcher_desc,
+                                        const nlohmann::json& presets,
+                                        const RNBO::BinaryData& data);
+
         static StackProcessor* CreateDefault();
-        StackProcessor(const nlohmann::json& patcher_desc, const nlohmann::json& presets, const RNBO::BinaryData& data);
         juce::AudioProcessorEditor* createEditor() override;
     private:
+        std::unique_ptr<foleys::Magic> magic;
+
+        void makeFactoryWidgets (foleys::MagicGUIBuilder& builder);
+
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (StackProcessor)
     };
 }
