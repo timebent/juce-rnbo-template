@@ -1,4 +1,4 @@
-#include "DebugWindow.h"
+#include "../../../src/DebugWindow.h"
 
 // Give the window a color 
 DebugWindow::DebugWindow()

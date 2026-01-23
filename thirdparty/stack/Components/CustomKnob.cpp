@@ -1,4 +1,4 @@
-#include "CustomKnob.h"
+#include "../../../src/CustomKnob.h"
 
 CustomKnob::CustomKnob()
 {
