@@ -1,8 +1,5 @@
 
-# ---------------------------------------------------------------------
-# foleys_gui_magic as a JUCE module
-# ---------------------------------------------------------------------
-juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
+
 
 # ---------------------------------------------------------------------
 # RNBO (C74) as OBJECT library
@@ -25,6 +22,20 @@ target_compile_features(RNBO_C74_OBJ PUBLIC cxx_std_17)
 # JUCE modules include root for:
 #   #include <juce_audio_processors/juce_audio_processors.h>
 set(JUCE_MODULES_DIR "${CMAKE_CURRENT_LIST_DIR}/thirdparty/juce/modules")
+
+juce_add_module(thirdparty/drowaudio/module/dRowAudio)
+juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
+
+target_link_libraries(dRowAudio
+  INTERFACE
+    juce::juce_core
+    juce::juce_audio_basics
+    juce::juce_audio_formats
+    juce::juce_audio_processors
+    juce::juce_gui_basics
+    juce::juce_graphics
+)
+
 
 target_include_directories(RNBO_C74_OBJ PRIVATE
   ${RNBO_CPP_DIR}/
@@ -78,6 +89,7 @@ target_include_directories(Stack_OBJ PRIVATE
   ${RNBO_CPP_DIR}/adapters/juce/
   "${JUCE_MODULES_DIR}"
   "${CMAKE_CURRENT_LIST_DIR}/thirdparty/foleys_gui_magic/modules"
+  "${CMAKE_CURRENT_LIST_DIR}/thirdparty/drowaudio/module"
 )
 target_compile_definitions(Stack_OBJ PRIVATE
    JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1
@@ -85,6 +97,7 @@ target_compile_definitions(Stack_OBJ PRIVATE
 # Link as INTERFACE to provide headers/definitions without compiling the module into this object library
 target_link_libraries(Stack_OBJ INTERFACE
   foleys_gui_magic
+  dRowAudio
 )
 
 # ---------------------------------------------------------------------
