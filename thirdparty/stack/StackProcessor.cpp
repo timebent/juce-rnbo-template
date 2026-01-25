@@ -54,7 +54,8 @@ juce::AudioProcessorEditor* StackProcessor::createEditor()
 void StackProcessor::makeFactoryWidgets()
 {
     magic->buildFactory = [&](foleys::MagicGUIBuilder& builder) {
-         builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
+        builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
+        makeCustomWidgets (builder);
     };
 
 }

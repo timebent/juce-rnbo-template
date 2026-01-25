@@ -17,12 +17,15 @@ namespace stack {
                                         const RNBO::BinaryData& data);
 
         static StackProcessor* CreateDefault();
-        juce::AudioProcessorEditor* createEditor() override;
-        void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
-        virtual void processPreRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
-        virtual void processPostRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
 
-        void handleParameterEvent(const RNBO::ParameterEvent& event) override {}
+        juce::AudioProcessorEditor* createEditor() override;
+
+        void processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
+        virtual void processPreRNBO (juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
+        virtual void processPostRNBO (juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
+        virtual void makeCustomWidgets (foleys::MagicGUIBuilder&) {};
+
+        void handleParameterEvent (const RNBO::ParameterEvent&) override {}
 
     private:
         std::unique_ptr<foleys::Magic> magic;
