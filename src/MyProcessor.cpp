@@ -15,6 +15,6 @@ void MyProcessor::prepare(double sampleRate, int maxBlockSize) {
 
 void MyProcessor::processPostRNBO(juce::AudioBuffer<float>& audioBuffer, juce::MidiBuffer& midiBuffer)
 {
+    juce::ignoreUnused (midiBuffer);
     oscilliscope->pushSamples(audioBuffer);
-
 }
