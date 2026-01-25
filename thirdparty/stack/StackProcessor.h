@@ -20,6 +20,8 @@ namespace stack {
 
         juce::AudioProcessorEditor* createEditor() override;
 
+        virtual void prepare (double sampleRate, int maxBlockSize) { juce::ignoreUnused(sampleRate, maxBlockSize); }
+        void prepareToPlay(double sampleRate, int maximumExpectedSamplesPerBlock) override;
         void processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
         virtual void processPreRNBO (juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
         virtual void processPostRNBO (juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
@@ -27,6 +29,7 @@ namespace stack {
 
         void handleParameterEvent (const RNBO::ParameterEvent&) override {}
 
+        foleys::MagicProcessorState& getMagicState() { return magic->getMagicState(); }
     private:
         std::unique_ptr<foleys::Magic> magic;
 

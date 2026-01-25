@@ -60,6 +60,13 @@ void StackProcessor::makeFactoryWidgets()
 
 }
 
+void StackProcessor::prepareToPlay (double sampleRate, int maximumExpectedSamplesPerBlock)
+{
+    RNBO::JuceAudioProcessor::prepareToPlay (sampleRate, maximumExpectedSamplesPerBlock);
+    prepare (sampleRate, maximumExpectedSamplesPerBlock);
+}
+
+
 void StackProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     processPreRNBO (buffer, midiMessages);
