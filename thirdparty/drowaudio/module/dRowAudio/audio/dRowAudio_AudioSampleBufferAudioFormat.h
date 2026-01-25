@@ -55,12 +55,6 @@ public:
     juce::AudioFormatReader* createReaderFor (juce::InputStream* sourceStream,
                                         bool deleteStreamIfOpeningFails) override;
 
-    juce::AudioFormatWriter* createWriterFor (juce::OutputStream* streamToWriteTo,
-                                        double sampleRateToUse,
-                                        unsigned int numberOfChannels,
-                                        int bitsPerSample,
-                                        const juce::StringPairArray& metadataValues,
-                                        int qualityOptionIndex) override;
 
 private:
     //==============================================================================

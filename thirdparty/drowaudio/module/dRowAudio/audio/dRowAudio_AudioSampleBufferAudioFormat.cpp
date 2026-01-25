@@ -143,13 +143,3 @@ AudioFormatReader* AudioSampleBufferAudioFormat::createReaderFor (InputStream* s
     return nullptr;
 }
 
-AudioFormatWriter* AudioSampleBufferAudioFormat::createWriterFor (OutputStream* /*streamToWriteTo*/,
-                                                                  double /*sampleRateToUse*/,
-                                                                  unsigned int /*numberOfChannels*/,
-                                                                  int /*bitsPerSample*/,
-                                                                  const juce::StringPairArray& /*metadataValues*/,
-                                                                  int /*qualityOptionIndex*/)
-{
-    jassertfalse; // not yet implemented!
-    return nullptr;
-}

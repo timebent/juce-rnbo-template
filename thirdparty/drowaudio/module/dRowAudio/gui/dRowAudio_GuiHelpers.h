@@ -168,6 +168,7 @@ namespace GuiHelpers
 
         @see Font, CustomTypeface
     */
+#if 0
     static inline bool serializeFont (const juce::Font& font, juce::File& destinationFile, int maxNumChars = 127)
     {
         destinationFile.deleteFile();
@@ -180,6 +181,7 @@ namespace GuiHelpers
 
         return customTypeface.writeToStream (*outFileStream);
     }
+#endif
 
     //==============================================================================
     /**
