@@ -1,6 +1,6 @@
-# RNBO-WYSIWYG-GUI
+# Stack
 
-This version of the template differs in that it attempts to fold in Foleys Plugin GUI Magic for creating GUIs in combination with what RNBO exports.  
+A stack for building plugins using RNBO in combination with Foleys Plugin GUI Magic for a "no code audio plugin workflow".  
 
 ### Modified Text of Cycling74s original readme.
 
