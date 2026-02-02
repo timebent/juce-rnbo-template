@@ -2,7 +2,7 @@
 
 A stack for building plugins using RNBO in combination with Foleys Plugin GUI Magic for a "no code audio plugin workflow".  
 
-### Modified Text of Cycling74s original readme.
+Below is a modified text of Cycling74s original readme.
 
 # RNBO JUCE Examples
 
